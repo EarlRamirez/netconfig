@@ -1,4 +1,8 @@
 $(document).ready(function() {
+  var socket = io.connect('https://' + document.domain + ':' + location.port + '/test', {secure: true});
+    socket.on('connect', function(msg){
+      console.log("test alert");
+  });
   var events = $('#events');
   var table = $('#tblViewHosts').DataTable({
     //dom: 'lBfrtip', // WIP for select all button

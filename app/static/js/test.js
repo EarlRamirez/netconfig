@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+    var socket = io.connect('https://' + document.domain + ':' + location.port + '/test', {secure: true});
     socket.on('connect', function(msg){
       console.log("test alert");
     });

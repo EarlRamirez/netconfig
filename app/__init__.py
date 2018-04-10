@@ -39,5 +39,5 @@ from app import views, models
 manager = Manager(app)
 if __name__ == "__main__":
     app.secret_key = os.urandom(25)
-    socketio.run(app)
+    socketio.run(app, message_queue='redis://')
     # manager.run()
