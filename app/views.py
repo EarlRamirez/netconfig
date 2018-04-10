@@ -6,9 +6,10 @@ try:
 except ImportError:
     from urllib.parse import quote_plus, unquote_plus  # Python 3
 
-from app import app, datahandler, logger, sshhandler
+from app import app, datahandler, logger, socketio, sshhandler
 from flask import flash, g, jsonify, redirect, render_template
 from flask import request, session, url_for
+
 from redis import StrictRedis
 from .scripts_bank.redis_logic import resetUserRedisExpireTimer, storeUserInRedis
 from .scripts_bank.lib.functions import checkForVersionUpdate
@@ -1180,6 +1181,21 @@ def resultsMultiIntEdit(x, y):
 ############
 # Settings #
 ############
+
+
+@socketio.on('connect', namespace='/test')
+def test_connect():
+    """Test connect."""
+    print('Client connected')
+    return None
+
+
+@socketio.on('disconnect', namespace='/test')
+def test_disconnect():
+    """Test disconnect."""
+    print('Client disconnected')
+    return None
+
 
 @app.route('/editsettings', methods=['GET', 'POST'])
 def editSettings():

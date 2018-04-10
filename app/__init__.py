@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_script import Manager
+from flask_socketio import SocketIO
 from .data_handler import DataHandler
 from .log_handler import LogHandler
 from .ssh_handler import SSHHandler
@@ -23,6 +24,8 @@ logger = LogHandler(app.config['SYSLOGFILE'])
 
 sshhandler = SSHHandler()
 
+socketio = SocketIO(app)
+
 # Errors blueprint
 from app.errors import bp as errors_bp
 app.register_blueprint(errors_bp)
@@ -36,4 +39,5 @@ from app import views, models
 manager = Manager(app)
 if __name__ == "__main__":
     app.secret_key = os.urandom(25)
-    manager.run()
+    socketio.run(app)
+    # manager.run()

@@ -51,6 +51,9 @@
 			<script src="{{url_for('static', filename='js/viewspecifichost.js')}}"></script>
 		{% elif "/modallocalcredentials" in request.path or "/results/resultshostedit" in request.path %}
 			<script src="{{url_for('static', filename='js/localcredentials.js')}}"></script>
+		{% elif "/editsettings" in request.path %}
+			<script src="{{url_for('static', filename='js/socket.io.min.js')}}"></script>
+			<script src="{{url_for('static', filename='js/test.js')}}"></script>
 		{% endif %}
 	{% endblock %}
 {% endblock %}
